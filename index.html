@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agrinho 2026 — Agro forte, futuro sustentável</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --solo: #5b4636;
+    --solo-dark: #3c2e22;
+    --trigo: #d8b463;
+    --verde: #2f5d3a;
+    --verde-claro: #6f9b5a;
+    --verde-pale: #e7efe0;
+    --creme: #f6f1e6;
+    --ceu: #eef4ec;
+    --tinta: #1f231d;
+    --linha: rgba(31,35,29,0.12);
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background: var(--creme);
+    color: var(--tinta);
+    font-family: 'Space Grotesk', sans-serif;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3, .display{
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .mono{
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.72rem;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+
+  img, svg{ display:block; max-width:100%; }
+
+  /* ===================== NAV ===================== */
+  .nav{
+    position: sticky; top:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 18px 6vw;
+    background: rgba(246,241,230,0.88);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--linha);
+  }
+  .nav .brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Fraunces', serif; font-weight:700; font-size:1.15rem;
+  }
+  .nav .brand .seed{
+    width:10px; height:10px; border-radius:50%;
+    background: var(--verde-claro);
+  }
+  .nav ul{
+    display:flex; gap:32px; list-style:none;
+  }
+  .nav ul li a{
+    font-size: 0.88rem; font-weight:500;
+    position:relative;
+    padding-bottom:4px;
+  }
+  .nav ul li a::after{
+    content:''; position:absolute; left:0; bottom:0; height:2px; width:0;
+    background:var(--verde); transition: width 0.25s ease;
+  }
+  .nav ul li a:hover::after{ width:100%; }
+  .nav-mobile{ display:none; }
+
+  @media (max-width: 760px){
+    .nav ul{ display:none; }
+  }
+
+  /* ===================== HERO — A LINHA DO EQUILÍBRIO ===================== */
+  .hero{
+    position:relative;
+    min-height: 92vh;
+    display:flex; flex-direction:column; justify-content:center;
+    padding: 0 6vw;
+    overflow:hidden;
+    background: linear-gradient(to bottom, var(--ceu) 0%, var(--ceu) 52%, var(--solo) 52%, var(--solo-dark) 100%);
+  }
+
+  .horizon-row{
+    position:absolute; top:52%; left:0; width:100%; height:3px;
+    background: var(--verde);
+    z-index:2;
+  }
+
+  .field-rows{
+    position:absolute; bottom:0; left:0; width:100%; height:48%;
+    background-image: repeating-linear-gradient(
+      100deg,
+      rgba(255,255,255,0.035) 0px,
+      rgba(255,255,255,0.035) 2px,
+      transparent 2px,
+      transparent 34px
+    );
+    z-index:1;
+  }
+
+  .sun{
+    position:absolute; top:14%; right:9%;
+    width:120px; height:120px; border-radius:50%;
+    background: radial-gradient(circle at 35% 35%, #f6e7b8, var(--trigo));
+    box-shadow: 0 0 0 14px rgba(216,180,99,0.12), 0 0 60px rgba(216,180,99,0.4);
+  }
+
+  .leaf-drift{
+    position:absolute; opacity:0.5;
+  }
+
+  .hero-content{
+    position:relative; z-index:5;
+    max-width: 980px;
+  }
+
+  .eyebrow-row{
+    display:flex; align-items:center; gap:14px;
+    margin-bottom: 26px;
+  }
+  .eyebrow-row .mono{ color: var(--verde-claro); }
+  .eyebrow-row .rule{ flex:0 0 40px; height:1px; background: var(--verde-claro); opacity:0.6; }
+
+  .hero h1{
+    font-size: clamp(2.6rem, 7vw, 5.6rem);
+    line-height: 1.02;
+    color: var(--tinta);
+  }
+  .hero h1 .accent{
+    color: var(--verde);
+    font-style: italic;
+  }
+  .hero h1 .accent-soil{
+    color: var(--trigo);
+  }
+
+  .hero-sub{
+    margin-top: 28px;
+    max-width: 560px;
+    font-size: 1.05rem;
+    line-height:1.6;
+    color: var(--solo);
+  }
+
+  .hero-cta{
+    margin-top: 40px;
+    display:flex; gap:16px; align-items:center; flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding: 14px 26px;
+    border-radius: 999px;
+    font-weight:600; font-size:0.92rem;
+    border: 1.5px solid var(--tinta);
+    transition: all 0.25s ease;
+  }
+  .btn-solid{
+    background: var(--verde); color: var(--creme); border-color: var(--verde);
+  }
+  .btn-solid:hover{ background: var(--solo-dark); border-color: var(--solo-dark); }
+  .btn-ghost:hover{ background: var(--tinta); color: var(--creme); }
+
+  .hero-balance-tag{
+    position:absolute; z-index:6;
+    bottom: 7%; right: 6vw;
+    text-align:right;
+    color: var(--creme);
+  }
+  .hero-balance-tag .num{
+    font-family:'Fraunces', serif; font-size:2.6rem; font-weight:600; line-height:1;
+  }
+  .hero-balance-tag .lbl{
+    font-size:0.7rem; opacity:0.7; margin-top:4px;
+  }
+
+  @media (max-width: 760px){
+    .hero-balance-tag{ display:none; }
+    .sun{ width:80px; height:80px; right:6%; }
+  }
+
+  /* ===================== SCROLLING STRIP ===================== */
+  .strip{
+    background: var(--tinta);
+    color: var(--creme);
+    overflow:hidden;
+    padding: 14px 0;
+    white-space: nowrap;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .strip-track{
+    display:inline-flex;
+    animation: scrollstrip 32s linear infinite;
+  }
+  .strip-track span{
+    font-family:'Fraunces', serif; font-style:italic; font-size:1.05rem;
+    padding: 0 2.4rem;
+    opacity:0.85;
+  }
+  .strip-track span::after{ content:'✦'; margin-left:2.4rem; opacity:0.4; font-style:normal; }
+  @keyframes scrollstrip{
+    from{ transform: translateX(0); }
+    to{ transform: translateX(-50%); }
+  }
+
+  /* ===================== SECTION GENERIC ===================== */
+  section{
+    padding: 110px 6vw;
+    position:relative;
+  }
+  .section-head{
+    max-width: 720px;
+    margin-bottom: 64px;
+  }
+  .section-head .mono{ color: var(--verde); margin-bottom:18px; display:block; }
+  .section-head h2{
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height:1.08;
+  }
+  .section-head p{
+    margin-top:20px;
+    color: var(--solo);
+    font-size:1.02rem;
+    line-height:1.6;
+    max-width: 560px;
+  }
+
+  /* ===================== TEMA — equilíbrio visual ===================== */
+  .tema{
+    background: var(--verde-pale);
+  }
+  .balance-wrap{
+    display:grid;
+    grid-template-columns: 1fr 1px 1fr;
+    gap: 56px;
+    align-items: stretch;
+  }
+  .balance-divider{
+    background: var(--verde);
+    opacity:0.25;
+  }
+  .balance-col{
+    display:flex; flex-direction:column; gap:22px;
+  }
+  .balance-col .tag{
+    display:inline-flex; align-items:center; gap:10px;
+    margin-bottom:6px;
+  }
+  .balance-col .tag .dot{ width:8px; height:8px; border-radius:50%; }
+  .col-producao .tag .dot{ background: var(--trigo); }
+  .col-ambiente .tag .dot{ background: var(--verde-claro); }
+  .balance-col .tag span{ font-weight:600; font-size:0.95rem; }
+
+  .balance-col h3{
+    font-size: 1.9rem;
+    line-height:1.15;
+  }
+  .balance-col p{
+    color: var(--solo); line-height:1.65; font-size:0.98rem;
+  }
+
+  .balance-fulcrum{
+    display:flex; justify-content:center; margin: 70px 0 0;
+  }
+  .fulcrum-badge{
+    width: 92px; height:92px; border-radius:50%;
+    background: var(--tinta); color: var(--creme);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces', serif; font-style:italic; font-size:0.85rem; text-align:center;
+    line-height:1.1; padding: 10px;
+    box-shadow: 0 14px 30px rgba(31,35,29,0.18);
+  }
+
+  @media (max-width: 760px){
+    .balance-wrap{ grid-template-columns: 1fr; gap:40px; }
+    .balance-divider{ display:none; }
+  }
+
+  /* ===================== PILARES (cards) ===================== */
+  .pilares-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--linha);
+    border: 1px solid var(--linha);
+  }
+  .pilar-card{
+    background: var(--creme);
+    padding: 44px 34px;
+    display:flex; flex-direction:column; gap:18px;
+    transition: background 0.3s ease;
+  }
+  .pilar-card:hover{ background: var(--verde-pale); }
+  .pilar-card .num{
+    font-family:'JetBrains Mono', monospace; font-size:0.78rem; color:var(--verde-claro);
+  }
+  .pilar-card h3{ font-size:1.4rem; }
+  .pilar-card p{ color: var(--solo); font-size:0.92rem; line-height:1.6; }
+  .pilar-icon{ width:38px; height:38px; }
+
+  @media (max-width: 900px){
+    .pilares-grid{ grid-template-columns: 1fr; }
+  }
+
+  /* ===================== NÚMEROS ===================== */
+  .numeros{
+    background: var(--solo-dark);
+    color: var(--creme);
+  }
+  .numeros .section-head .mono{ color: var(--trigo); }
+  .numeros .section-head h2, .numeros .section-head p{ color: var(--creme); }
+  .numeros .section-head p{ opacity:0.75; }
+
+  .num-grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+  }
+  .num-item{ border-left: 2px solid rgba(216,180,99,0.4); padding-left:22px; }
+  .num-item .big{
+    font-family:'Fraunces', serif; font-size: clamp(2.2rem, 4vw, 3.4rem);
+    color: var(--trigo); line-height:1;
+  }
+  .num-item .lbl{ margin-top:10px; font-size:0.88rem; opacity:0.75; line-height:1.4; }
+
+  @media (max-width: 900px){
+    .num-grid{ grid-template-columns: repeat(2, 1fr); gap:36px 28px; }
+  }
+
+  /* ===================== TIMELINE ===================== */
+  .timeline-list{
+    display:flex; flex-direction:column;
+  }
+  .timeline-item{
+    display:grid;
+    grid-template-columns: 140px 1fr;
+    gap: 32px;
+    padding: 30px 0;
+    border-top: 1px solid var(--linha);
+    align-items:baseline;
+  }
+  .timeline-item:last-child{ border-bottom: 1px solid var(--linha); }
+  .timeline-item .when{
+    font-family:'JetBrains Mono', monospace; font-size:0.85rem; color: var(--verde);
+  }
+  .timeline-item h4{ font-size:1.2rem; margin-bottom:6px; font-weight:600; font-family:'Space Grotesk', sans-serif;}
+  .timeline-item p{ color:var(--solo); font-size:0.92rem; line-height:1.55; max-width:560px; }
+
+  @media (max-width: 640px){
+    .timeline-item{ grid-template-columns: 1fr; gap:8px; }
+  }
+
+  /* ===================== CATEGORIAS ===================== */
+  .categorias{
+    background: var(--verde-pale);
+  }
+  .cat-scroller{
+    display:flex; gap: 18px; overflow-x:auto; padding-bottom:12px;
+    scrollbar-width:none;
+  }
+  .cat-scroller::-webkit-scrollbar{ display:none; }
+  .cat-card{
+    flex: 0 0 260px;
+    background: var(--creme);
+    border-radius: 18px;
+    padding: 30px 26px;
+    border: 1px solid var(--linha);
+    display:flex; flex-direction:column; gap:14px;
+  }
+  .cat-card .mono{ color:var(--verde-claro); }
+  .cat-card h4{ font-size:1.15rem; font-family:'Fraunces', serif; font-weight:600;}
+  .cat-card p{ font-size:0.86rem; color:var(--solo); line-height:1.55; }
+
+  /* ===================== CTA FINAL ===================== */
+  .cta-final{
+    background: linear-gradient(135deg, var(--verde) 0%, var(--verde-claro) 100%);
+    color: var(--creme);
+    text-align:center;
+    padding: 130px 6vw;
+  }
+  .cta-final h2{
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    max-width: 760px; margin: 0 auto;
+    line-height:1.1;
+  }
+  .cta-final p{
+    margin-top:22px; opacity:0.88; font-size:1.05rem;
+  }
+  .cta-final .hero-cta{ justify-content:center; margin-top:40px; }
+  .cta-final .btn-ghost{ border-color: var(--creme); }
+  .cta-final .btn-ghost:hover{ background: var(--creme); color: var(--verde); }
+  .cta-final .btn-solid{ background: var(--solo-dark); border-color: var(--solo-dark); }
+
+  /* ===================== FOOTER ===================== */
+  footer{
+    background: var(--tinta);
+    color: var(--creme);
+    padding: 64px 6vw 36px;
+  }
+  .footer-grid{
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:40px;
+    padding-bottom:40px; border-bottom: 1px solid rgba(255,255,255,0.12);
+  }
+  .footer-brand{ max-width:340px; }
+  .footer-brand .display{ font-size:1.3rem; margin-bottom:14px; }
+  .footer-brand p{ font-size:0.85rem; opacity:0.65; line-height:1.6; }
+  .footer-cols{ display:flex; gap:60px; flex-wrap:wrap; }
+  .footer-col h5{ font-size:0.8rem; opacity:0.55; margin-bottom:14px; text-transform:uppercase; letter-spacing:0.08em; }
+  .footer-col a{ display:block; font-size:0.9rem; margin-bottom:10px; opacity:0.85; }
+  .footer-col a:hover{ opacity:1; text-decoration:underline; }
+  .footer-bottom{
+    display:flex; justify-content:space-between; padding-top:28px;
+    font-size:0.78rem; opacity:0.5; flex-wrap:wrap; gap:10px;
+  }
+
+  /* reveal on scroll */
+  .reveal{
+    opacity:0; transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.in{ opacity:1; transform:none; }
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1; transform:none; transition:none; }
+    .strip-track{ animation:none; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="brand"><span class="seed"></span> Agrinho 2026</div>
+  <ul>
+    <li><a href="#tema">O tema</a></li>
+    <li><a href="#pilares">Pilares</a></li>
+    <li><a href="#numeros">Números</a></li>
+    <li><a href="#calendario">Calendário</a></li>
+    <li><a href="#categorias">Categorias</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="field-rows"></div>
+  <div class="horizon-row"></div>
+  <div class="sun"></div>
+
+  <div class="hero-content">
+    <div class="eyebrow-row">
+      <span class="rule"></span>
+      <span class="mono">Programa Agrinho · Edição 2026</span>
+    </div>
+    <h1>Agro forte,<br><span class="accent">futuro</span> <span class="accent-soil">sustentável</span>.</h1>
+    <p class="hero-sub">O tema de 2026 propõe uma pergunta simples e urgente: como produzir mais alimento sem pesar a mão sobre a terra que o gera? Equilíbrio entre produção e meio ambiente — essa é a linha que estudantes e professores de todo o Paraná vão explorar este ano.</p>
+    <div class="hero-cta">
+      <a href="#tema" class="btn btn-solid">Explorar o tema →</a>
+      <a href="#categorias" class="btn btn-ghost">Ver categorias do concurso</a>
+    </div>
+  </div>
+
+  <div class="hero-balance-tag">
+    <div class="num">31</div>
+    <div class="lbl">anos de Programa Agrinho<br>no Paraná</div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="strip-track">
+    <span>Agro forte</span><span>Futuro sustentável</span><span>Equilíbrio</span><span>Produção</span><span>Meio ambiente</span>
+    <span>Agro forte</span><span>Futuro sustentável</span><span>Equilíbrio</span><span>Produção</span><span>Meio ambiente</span>
+  </div>
+</div>
+
+<section id="tema" class="tema">
+  <div class="section-head reveal">
+    <span class="mono">O tema central</span>
+    <h2>Duas forças, um mesmo terreno.</h2>
+    <p>O Agrinho 2026 não pede para escolher um lado. Pede para entender como produção e natureza sustentam uma à outra — e o que acontece quando esse equilíbrio se rompe.</p>
+  </div>
+
+  <div class="balance-wrap">
+    <div class="balance-col col-producao reveal">
+      <div class="tag"><span class="dot"></span><span class="mono">Produção</span></div>
+      <h3>O Paraná que alimenta o Brasil</h3>
+      <p>Lavouras de soja, milho e trigo, integração lavoura-pecuária, tecnologia no campo, cooperativismo. A produção agropecuária é motor econômico — gera renda, emprego e segurança alimentar para milhões de pessoas dentro e fora do estado.</p>
+      <p>O desafio do Agrinho 2026 é mostrar que produtividade não é, por si só, inimiga da natureza — desde que venha acompanhada de manejo responsável.</p>
+    </div>
+    <div class="balance-divider"></div>
+    <div class="balance-col col-ambiente reveal">
+      <div class="tag"><span class="dot"></span><span class="mono">Meio ambiente</span></div>
+      <h3>O solo, a água e o tempo que não se recuperam rápido</h3>
+      <p>Solo fértil leva décadas para se formar e pode se perder em uma única safra mal manejada. Mata ciliar, nascentes, biodiversidade e clima são a base silenciosa sobre a qual toda produção se apoia.</p>
+      <p>Preservar não é frear o agro — é garantir que ele continue existindo na próxima geração.</p>
+    </div>
+  </div>
+
+  <div class="balance-fulcrum reveal">
+    <div class="fulcrum-badge">ponto de<br>equilíbrio</div>
+  </div>
+</section>
+
+<section id="pilares">
+  <div class="section-head reveal">
+    <span class="mono">Como trabalhar o tema</span>
+    <h2>Quatro pilares para guiar a redação, o desenho ou o projeto.</h2>
+    <p>Esses eixos ajudam a transformar o tema amplo do Agrinho em um recorte concreto para a sala de aula.</p>
+  </div>
+
+  <div class="pilares-grid">
+    <div class="pilar-card reveal">
+      <span class="num">01</span>
+      <h3>Solo vivo</h3>
+      <p>Plantio direto, rotação de culturas, cobertura vegetal e adubação orgânica — práticas que devolvem ao solo o que a colheita retira.</p>
+    </div>
+    <div class="pilar-card reveal">
+      <span class="num">02</span>
+      <h3>Água que circula</h3>
+      <p>Preservação de nascentes e mata ciliar, uso racional de irrigação e o cuidado com bacias hidrográficas que abastecem campo e cidade.</p>
+    </div>
+    <div class="pilar-card reveal">
+      <span class="num">03</span>
+      <h3>Tecnologia com propósito</h3>
+      <p>Agricultura de precisão, sensores, drones e dados aplicados para produzir mais usando menos insumo, menos água, menos desperdício.</p>
+    </div>
+    <div class="pilar-card reveal">
+      <span class="num">04</span>
+      <h3>Gente do campo</h3>
+      <p>Valorização do produtor rural, da agricultura familiar e da educação no campo como parte essencial da sustentabilidade.</p>
+    </div>
+    <div class="pilar-card reveal">
+      <span class="num">05</span>
+      <h3>Cidade que depende do campo</h3>
+      <p>Entender a cadeia produtiva — de onde vem o alimento que chega à mesa — é o primeiro passo para uma relação mais consciente com o consumo.</p>
+    </div>
+    <div class="pilar-card reveal">
+      <span class="num">06</span>
+      <h3>Futuro em construção</h3>
+      <p>Cada projeto inscrito no Agrinho é uma aposta de que equilíbrio entre produção e natureza é possível — e já está sendo praticado.</p>
+    </div>
+  </div>
+</section>
+
+<section id="numeros" class="numeros">
+  <div class="section-head reveal">
+    <span class="mono">O Agrinho em números</span>
+    <h2>Uma das maiores iniciativas educacionais do estado.</h2>
+    <p>Dados de edições recentes do programa, conduzido pelo Sistema Faep/Senar-PR em parceria com a Secretaria de Estado da Educação.</p>
+  </div>
+  <div class="num-grid">
+    <div class="num-item reveal">
+      <div class="big">31</div>
+      <div class="lbl">anos de programa no Paraná, desde a criação do Agrinho</div>
+    </div>
+    <div class="num-item reveal">
+      <div class="big">399</div>
+      <div class="lbl">municípios paranaenses historicamente alcançados pelo programa</div>
+    </div>
+    <div class="num-item reveal">
+      <div class="big">+1M</div>
+      <div class="lbl">estudantes já impactados ao longo das edições do Agrinho</div>
+    </div>
+    <div class="num-item reveal">
+      <div class="big">3</div>
+      <div class="lbl">categorias principais: redação, desenho e robótica</div>
+    </div>
+  </div>
+</section>
+
+<section id="calendario">
+  <div class="section-head reveal">
+    <span class="mono">Calendário 2026</span>
+    <h2>Da inscrição à premiação em Curitiba.</h2>
+    <p>Prazos de referência do concurso estadual — confirme sempre as datas oficiais no site do Sistema Faep/Senar-PR, pois podem variar por regional.</p>
+  </div>
+  <div class="timeline-list">
+    <div class="timeline-item reveal">
+      <div class="when">Início do ano</div>
+      <div>
+        <h4>Lançamento do tema</h4>
+        <p>Divulgação oficial de "Agro forte, futuro sustentável: equilíbrio entre produção e meio ambiente" para escolas da rede estadual.</p>
+      </div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="when">Até 30 de junho</div>
+      <div>
+        <h4>Produção das redações</h4>
+        <p>Estudantes do Fundamental II e Ensino Médio escrevem e submetem seus textos pela plataforma Redação Paraná, com orientação dos professores.</p>
+      </div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="when">Julho – agosto</div>
+      <div>
+        <h4>Inscrições de Robótica e avaliação</h4>
+        <p>Período de inscrição dos projetos de robótica pelos Núcleos Regionais de Educação, seguido da avaliação final pela banca da Seed-PR e Senar-PR.</p>
+      </div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="when">Setembro</div>
+      <div>
+        <h4>Divulgação dos classificados</h4>
+        <p>Resultados parciais publicados nos canais oficiais do programa, por categoria e subcategoria.</p>
+      </div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="when">Novembro</div>
+      <div>
+        <h4>Cerimônia de premiação em Curitiba</h4>
+        <p>Evento estadual reúne estudantes e professores orientadores classificados de todas as regiões do Paraná para a premiação final.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="categorias" class="categorias">
+  <div class="section-head reveal">
+    <span class="mono">Categorias do concurso</span>
+    <h2>Três jeitos de colocar o tema em prática.</h2>
+    <p>Cada categoria pede uma linguagem diferente para a mesma pergunta: como equilibrar produção e meio ambiente?</p>
+  </div>
+  <div class="cat-scroller">
+    <div class="cat-card reveal">
+      <span class="mono">Categoria</span>
+      <h4>Redação</h4>
+      <p>Gêneros textuais variados conforme a etapa de ensino, com foco em reflexão crítica sobre sustentabilidade no campo. Premiação para os três primeiros colocados de cada regional.</p>
+    </div>
+    <div class="cat-card reveal">
+      <span class="mono">Categoria</span>
+      <h4>Desenho</h4>
+      <p>Para estudantes da Educação Infantil e anos iniciais — uma forma visual de expressar a relação entre produção agrícola e cuidado ambiental.</p>
+    </div>
+    <div class="cat-card reveal">
+      <span class="mono">Categoria</span>
+      <h4>Robótica</h4>
+      <p>Protótipos com materiais alternativos e tecnológicos, aplicados a soluções reais para o equilíbrio entre produção e meio ambiente. Avaliação por subcategoria de Fundamental e Médio.</p>
+    </div>
+    <div class="cat-card reveal">
+      <span class="mono">Categoria</span>
+      <h4>Relato de Experiência Pedagógica</h4>
+      <p>Professores documentam como trabalharam o tema do Agrinho em sala de aula, de forma individual e autoral.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final">
+  <h2 class="reveal">Sua escola já pode plantar essa ideia.</h2>
+  <p class="reveal">Procure o Núcleo Regional de Educação ou o sindicato rural da sua região para confirmar inscrição, materiais pedagógicos e prazos oficiais do Agrinho 2026.</p>
+  <div class="hero-cta">
+    <a href="#calendario" class="btn btn-solid">Ver calendário</a>
+    <a href="#categorias" class="btn btn-ghost">Ver categorias</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="display">Agrinho 2026</div>
+      <p>Site educativo não oficial, produzido para apresentar o tema "Agro forte, futuro sustentável: equilíbrio entre produção e meio ambiente" do Programa Agrinho, realizado pelo Sistema Faep/Senar-PR em parceria com a Seed-PR.</p>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h5>Conteúdo</h5>
+        <a href="#tema">O tema</a>
+        <a href="#pilares">Pilares</a>
+        <a href="#numeros">Números</a>
+      </div>
+      <div class="footer-col">
+        <h5>Concurso</h5>
+        <a href="#calendario">Calendário</a>
+        <a href="#categorias">Categorias</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>Material de apoio educativo — confirme sempre as informações no site oficial do Sistema Faep/Senar-PR.</span>
+    <span>Agrinho 2026</span>
+  </div>
+</footer>
+
+<script>
+  const items = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.15 });
+  items.forEach(i=>obs.observe(i));
+</script>
+
+</body>
+</html>
